@@ -33,7 +33,8 @@ describe SRT::Line do
     it "renders in the correct positions" do
       output = "7\n" +
                "04:32:02,032 --> 05:07:03,027\n" +
-               "Hello"
+               "Hello\n" +
+               "\n"
 
       line.to_s.should eq(output)
     end

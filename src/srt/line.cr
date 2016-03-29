@@ -12,7 +12,8 @@ module SRT
     def to_s
       "#{sequence}\n" +
       "#{starts_at.to_s(TIME_FORMAT)}#{SEPARATOR}#{finishs_at.to_s(TIME_FORMAT)}\n" +
-      "#{text}"
+      "#{text}\n" +
+      "\n"
     end
   end
 end
