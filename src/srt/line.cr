@@ -1,11 +1,13 @@
 module SRT
   class Line
-    property sequence : Int32
+    property sequence : Int32,
+             text : String
 
-    def initialize(@sequence = 0); end
+    def initialize(@sequence = 0, @text = ""); end
 
     def to_s
-      "#{sequence}"
+      "#{sequence}\n" +
+      "#{text}"
     end
   end
 end
