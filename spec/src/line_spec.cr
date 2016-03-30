@@ -2,8 +2,8 @@ require "./../spec_helper"
 
 describe SRT::Line do
   context "when rendering" do
-    starts_at = Time.new(Time::Span.new(0, 4, 32, 2, 32).ticks)
-    finishs_at = Time.new(Time::Span.new(0, 5, 7, 3, 27).ticks)
+    starts_at = Helper.smart_time(4, 32, 2, 32)
+    finishs_at = Helper.smart_time(5, 7, 3, 27)
 
     line = SRT::Line.new(sequence: 7,
                          starts_at: starts_at,
