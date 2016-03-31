@@ -1,59 +1,57 @@
 require "./../spec_helper"
 
 describe SRT::Line do
-  one_line = Fixture.load("one-line.srt")
+  let(one_line) { Fixture.load("one-line.srt") }
 
   context "when parsing" do
-    line = SRT::Line.parse(one_line)
+    let(line) { SRT::Line.parse(one_line) }
 
-    it "parses the sequence" do
-      line.sequence.should eq(1)
-    end
+    context "with valid input" do
+      it "parses the sequence" do
+        expect(line.sequence).to eq(1)
+      end
 
-    it "parses the starts at" do
-      line.starts_at.should eq(Helper.smart_time(0, 2, 50, 904))
-    end
+      it "parses the starts at" do
+        expect(line.starts_at).to eq(Helper.smart_time(0, 2, 50, 904))
+      end
 
-    it "parses the finishs at" do
-      line.finishs_at.should eq(Helper.smart_time(0, 2, 52, 929))
-    end
+      it "parses the finishs at" do
+        expect(line.finishs_at).to eq(Helper.smart_time(0, 2, 52, 929))
+      end
 
-    it "parses the text" do
-      line.text.should eq("Help me!\n")
+      it "parses the text" do
+        expect(line.text).to eq("Help me!\n")
+      end
     end
   end
 
   context "when rendering" do
-    starts_at = Helper.smart_time(0, 2, 50, 904)
-    finishs_at = Helper.smart_time(0, 2, 52, 929)
-
-    line = SRT::Line.new(sequence: 1,
-                         starts_at: starts_at,
-                         finishs_at: finishs_at,
-                         text: "Help me!")
+    let(starts_at) { Helper.smart_time(0, 2, 50, 904) }
+    let(finishs_at) { Helper.smart_time(0, 2, 52, 929) }
+    let(line) { SRT::Line.new(sequence: 1, starts_at: starts_at, finishs_at: finishs_at, text: "Help me!") }
 
     it "renders the sequence" do
-      line.to_s.should match(/1/)
+      expect(line.to_s).to match(/1/)
     end
 
     it "renders the text" do
-      line.to_s.should match(/Help me!/)
+      expect(line.to_s).to match(/Help me!/)
     end
 
     it "renders the starts_at" do
-      line.to_s.should match(/00:02:50,904/)
+      expect(line.to_s).to match(/00:02:50,904/)
     end
 
     it "renders the finishs_at" do
-      line.to_s.should match(/00:02:52,929/)
+      expect(line.to_s).to match(/00:02:52,929/)
     end
 
     it "renders the separator" do
-      line.to_s.should match(/-->/)
+      expect(line.to_s).to match(/-->/)
     end
 
     it "renders in the correct positions" do
-      line.to_s.should eq(one_line)
+      expect(line.to_s).to eq(one_line)
     end
   end
 end
