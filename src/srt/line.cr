@@ -15,5 +15,16 @@ module SRT
       "#{text}\n" +
       "\n"
     end
+
+    def self.parse(input : String)
+      lines = input.split("\n")
+
+      sequence = lines[0].to_i
+      starts_at = Time.parse(lines[1].split(" ")[0], TIME_FORMAT)
+      finishs_at = Time.parse(lines[1].split(" ")[2], TIME_FORMAT)
+      text = lines[2..-2].join("\n")
+
+      new(sequence: sequence, starts_at: starts_at, finishs_at: finishs_at, text: text)
+    end
   end
 end

@@ -3,6 +3,26 @@ require "./../spec_helper"
 describe SRT::Line do
   one_line = Fixture.load("one-line.srt")
 
+  context "when parsing" do
+    line = SRT::Line.parse(one_line)
+
+    it "parses the sequence" do
+      line.sequence.should eq(1)
+    end
+
+    it "parses the starts at" do
+      line.starts_at.should eq(Helper.smart_time(0, 2, 50, 904))
+    end
+
+    it "parses the finishs at" do
+      line.finishs_at.should eq(Helper.smart_time(0, 2, 52, 929))
+    end
+
+    it "parses the text" do
+      line.text.should eq("Help me!\n")
+    end
+  end
+
   context "when rendering" do
     starts_at = Helper.smart_time(0, 2, 50, 904)
     finishs_at = Helper.smart_time(0, 2, 52, 929)
