@@ -1,29 +1,31 @@
 require "./../spec_helper"
 
 describe SRT::Line do
-  context "when rendering" do
-    starts_at = Helper.smart_time(4, 32, 2, 32)
-    finishs_at = Helper.smart_time(5, 7, 3, 27)
+  one_line = Fixture.load("one-line.srt")
 
-    line = SRT::Line.new(sequence: 7,
+  context "when rendering" do
+    starts_at = Helper.smart_time(0, 2, 50, 904)
+    finishs_at = Helper.smart_time(0, 2, 52, 929)
+
+    line = SRT::Line.new(sequence: 1,
                          starts_at: starts_at,
                          finishs_at: finishs_at,
-                         text: "Hello")
+                         text: "Help me!")
 
     it "renders the sequence" do
-      line.to_s.should match(/7/)
+      line.to_s.should match(/1/)
     end
 
     it "renders the text" do
-      line.to_s.should match(/Hello/)
+      line.to_s.should match(/Help me!/)
     end
 
     it "renders the starts_at" do
-      line.to_s.should match(/04:32:02,032/)
+      line.to_s.should match(/00:02:50,904/)
     end
 
     it "renders the finishs_at" do
-      line.to_s.should match(/05:07:03,027/)
+      line.to_s.should match(/00:02:52,929/)
     end
 
     it "renders the separator" do
@@ -31,12 +33,7 @@ describe SRT::Line do
     end
 
     it "renders in the correct positions" do
-      output = "7\n" +
-               "04:32:02,032 --> 05:07:03,027\n" +
-               "Hello\n" +
-               "\n"
-
-      line.to_s.should eq(output)
+      line.to_s.should eq(one_line)
     end
   end
 end
