@@ -19,7 +19,7 @@ module SRT
     end
 
     def self.parse(input : String)
-      lines = input.split("\n")
+      lines = input.lines
 
       if lines.size < 4
         raise Invalid.new("Invalid Size")
