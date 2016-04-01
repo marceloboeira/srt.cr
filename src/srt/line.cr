@@ -3,7 +3,7 @@ module SRT
     class Invalid < Exception; end
 
     TIME_FORMAT = "%H:%M:%S,%L"
-    SEPARATOR = " --> "
+    SEPARATOR = "-->"
     property sequence : Int32,
              starts_at : Time,
              finishs_at : Time,
@@ -13,7 +13,7 @@ module SRT
 
     def to_s
       "#{sequence}\n" +
-      "#{starts_at.to_s(TIME_FORMAT)}#{SEPARATOR}#{finishs_at.to_s(TIME_FORMAT)}\n" +
+      "#{starts_at.to_s(TIME_FORMAT)} #{SEPARATOR} #{finishs_at.to_s(TIME_FORMAT)}\n" +
       "#{text}\n" +
       "\n"
     end
