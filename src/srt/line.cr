@@ -1,5 +1,7 @@
 module SRT
   class Line
+    class Invalid < Exception; end
+
     TIME_FORMAT = "%H:%M:%S,%L"
     SEPARATOR = " --> "
     property sequence : Int32,
@@ -19,7 +21,11 @@ module SRT
     def self.parse(input : String)
       lines = input.split("\n")
 
+      if !(lines[0] =~ /[0-9]/)
+        raise Invalid.new("Invalid Sequence")
+      end
       sequence = lines[0].to_i
+
       starts_at = Time.parse(lines[1].split(" ")[0], TIME_FORMAT)
       finishs_at = Time.parse(lines[1].split(" ")[2], TIME_FORMAT)
       text = lines[2..-2].join("\n")

@@ -6,7 +6,7 @@ describe SRT::Line do
   context "when parsing" do
     let(line) { SRT::Line.parse(one_line) }
 
-    context "with valid input" do
+    context "with a valid input" do
       it "parses the sequence" do
         expect(line.sequence).to eq(1)
       end
@@ -21,6 +21,14 @@ describe SRT::Line do
 
       it "parses the text" do
         expect(line.text).to eq("Help me!\n")
+      end
+    end
+
+    context "with an invalid input" do
+      it "validates the sequence" do
+        input = "A\n\n\n"
+
+        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid)
       end
     end
   end
