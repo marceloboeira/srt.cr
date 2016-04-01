@@ -25,10 +25,16 @@ describe SRT::Line do
     end
 
     context "with an invalid input" do
-      it "validates the sequence" do
-        input = "A\n\n\n"
+      it "validates the size" do
+        input = "\n\n\n"
 
-        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid)
+        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid, "Invalid Size")
+      end
+
+      it "validates the sequence" do
+        input = "A\n\n\n\n"
+
+        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid, "Invalid Sequence")
       end
     end
   end

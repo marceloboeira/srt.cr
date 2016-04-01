@@ -21,6 +21,10 @@ module SRT
     def self.parse(input : String)
       lines = input.split("\n")
 
+      if lines.size < 4
+        raise Invalid.new("Invalid Size")
+      end
+
       if !(lines[0] =~ /[0-9]/)
         raise Invalid.new("Invalid Sequence")
       end
