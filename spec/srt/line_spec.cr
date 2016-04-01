@@ -36,6 +36,18 @@ describe SRT::Line do
 
         expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid, "Invalid Sequence")
       end
+
+      it "validates starts_at" do
+        input = "1\n00:11:22,A --> 00:11:23,300\n\n\n"
+
+        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid, "Invalid Starts at")
+      end
+
+      it "validates starts_at" do
+        input = "1\n00:11:22,200 --> 00:11:33,A\n\n\n"
+
+        expect{ SRT::Line.parse(input) }.to raise_error(SRT::Line::Invalid, "Invalid Finishs at")
+      end
     end
   end
 

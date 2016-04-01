@@ -30,8 +30,18 @@ module SRT
       end
       sequence = lines[0].to_i
 
-      starts_at = Time.parse(lines[1].split(" ")[0], TIME_FORMAT)
-      finishs_at = Time.parse(lines[1].split(" ")[2], TIME_FORMAT)
+      starts_at, separator, finishs_at = lines[1].split(" ")
+
+      if starts_at.match(/(([0-9]{2}[:,]){3})[0-9]{3}/).nil?
+        raise Invalid.new("Invalid Starts at")
+      end
+      starts_at = Time.parse(starts_at, TIME_FORMAT)
+
+      if finishs_at.match(/(([0-9]{2}[:,]){3})[0-9]{3}/).nil?
+        raise Invalid.new("Invalid Finishs at")
+      end
+      finishs_at = Time.parse(finishs_at, TIME_FORMAT)
+
       text = lines[2..-2].join("\n")
 
       new(sequence: sequence, starts_at: starts_at, finishs_at: finishs_at, text: text)
