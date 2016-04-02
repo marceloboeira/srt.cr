@@ -25,7 +25,7 @@ module SRT
         raise Invalid.new("Invalid Size")
       end
 
-      if !(lines[0] =~ /[0-9]/)
+      if lines[0].match(/[0-9]/).nil?
         raise Invalid.new("Invalid Sequence")
       end
       sequence = lines[0].to_i
