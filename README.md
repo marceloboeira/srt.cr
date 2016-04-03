@@ -18,8 +18,8 @@ dependencies:
 ```crystal
 require "str"
 
-file = STR::File.parse(File.read("lost-s01e01-pilot.srt"))
+subtitle = STR::File.parse(File.read("lost-s01e01-pilot.srt"))
 
-p file.lines.first.text
+p subtitle.lines.first.text
 # =>  Help me!
 ```
