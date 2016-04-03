@@ -20,7 +20,7 @@ describe SRT::Line do
       end
 
       it "parses the text" do
-        expect(line.text).to eq("Help me!\n")
+        expect(line.text).to eq("Help me!")
       end
     end
 

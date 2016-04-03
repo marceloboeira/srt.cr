@@ -42,7 +42,7 @@ module SRT
       end
       finishs_at = Time.parse(finishs_at, TIME_FORMAT)
 
-      text = lines[2..-2].join("\n")
+      text = lines[2..-2].join("\n").rstrip
 
       new(sequence: sequence, starts_at: starts_at, finishs_at: finishs_at, text: text)
     end
