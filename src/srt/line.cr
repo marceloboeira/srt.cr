@@ -12,10 +12,12 @@ module SRT
     def initialize(@sequence = 0, @starts_at = Time.now, @finishs_at = Time.now, @text = ""); end
 
     def to_s
-      "#{sequence}\n" +
-      "#{starts_at.to_s(TIME_FORMAT)} #{SEPARATOR} #{finishs_at.to_s(TIME_FORMAT)}\n" +
-      "#{text}\n" +
-      "\n"
+      <<-STRING
+      #{sequence}
+      #{starts_at.to_s(TIME_FORMAT)} #{SEPARATOR} #{finishs_at.to_s(TIME_FORMAT)}
+      #{text}
+      \n
+      STRING
     end
 
     def self.parse(input : String)
