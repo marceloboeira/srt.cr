@@ -4,14 +4,12 @@ module SRT
 
     def initialize(@lines = [] of Line); end
 
-    def to_s
-      buffer = ""
-
+    def to_s(io = MemoryIO.new)
       lines.each do |line|
-        buffer += line.to_s
+        io << line.to_s
       end
 
-      buffer
+      io.to_s
     end
 
     def self.parse(input : String)
