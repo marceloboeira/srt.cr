@@ -11,13 +11,15 @@ module SRT
 
     def initialize(@sequence = 0, @starts_at = Time.now, @finishs_at = Time.now, @text = ""); end
 
-    def to_s
-      <<-STRING
+    def to_s(io : IO = MemoryIO.new)
+      io << <<-STRING
       #{sequence}
       #{starts_at.to_s(TIME_FORMAT)} #{SEPARATOR} #{finishs_at.to_s(TIME_FORMAT)}
       #{text}
       \n
       STRING
+
+      io.to_s
     end
 
     def self.parse(input : String)
