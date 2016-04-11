@@ -4,7 +4,7 @@ module SRT
 
     def initialize(@lines = [] of Line); end
 
-    def to_s(io = MemoryIO.new)
+    def to_s(io : IO = MemoryIO.new)
       lines.each do |line|
         io << line.to_s
       end
