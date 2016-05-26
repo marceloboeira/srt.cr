@@ -18,6 +18,13 @@ module SRT
       "\n"
     end
 
+    def shift!(span : Time::Span)
+      @starts_at += span
+      @finishs_at += span
+
+      self
+    end
+
     def self.parse(input : String)
       lines = input.lines
 

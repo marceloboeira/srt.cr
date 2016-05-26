@@ -14,6 +14,10 @@ module SRT
       buffer
     end
 
+    def shift!(span : Time::Span)
+
+    end
+
     def self.parse(input : String)
       input_lines = input.lines
       lines = [] of Line

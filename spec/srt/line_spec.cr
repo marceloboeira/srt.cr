@@ -80,4 +80,20 @@ describe SRT::Line do
       expect(line.to_s).to eq(one_line)
     end
   end
+
+  context "when shifting time" do
+    let(starts_at) { Helper.smart_time(0, 2, 50, 904) }
+    let(finishs_at) { Helper.smart_time(0, 2, 52, 929) }
+    let(line) { SRT::Line.new(sequence: 1, starts_at: starts_at, finishs_at: finishs_at, text: "Help me!") }
+
+    it "shifts starts_at field" do
+      line.shift!(3.seconds)
+
+      expect(line.starts_at).to eq(Helper.smart_time(0, 5, 50, 904))
+    end
+
+    it "shifts finishs_at field" do
+
+    end
+  end
 end

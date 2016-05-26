@@ -34,4 +34,9 @@ describe SRT::File do
       expect(file.to_s).to eq(two_lines)
     end
   end
+
+  context "when shifting time" do
+    let(file) { SRT::File.new(lines: lines) }
+
+  end
 end
