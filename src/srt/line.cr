@@ -3,18 +3,18 @@ module SRT
     class Invalid < Exception; end
 
     TIME_FORMAT = "%H:%M:%S,%L"
-    SEPARATOR = "-->"
+    DEFAULT_SEPARATOR = "-->"
     property sequence : Int32,
              starts_at : Time,
              finishs_at : Time,
              text : String
 
-    def initialize(@sequence = 0, @starts_at = Time.now, @finishs_at = Time.now, @text = ""); end
+    def initialize(@sequence = 0, @starts_at = Time.now, @finishs_at = Time.now, @text = "", @separator = DEFAULT_SEPARATOR); end
 
     def to_s(io)
       io << <<-STRING
       #{sequence}
-      #{starts_at.to_s(TIME_FORMAT)} #{SEPARATOR} #{finishs_at.to_s(TIME_FORMAT)}
+      #{starts_at.to_s(TIME_FORMAT)} #{@separator} #{finishs_at.to_s(TIME_FORMAT)}
       #{text}
       \n
       STRING
